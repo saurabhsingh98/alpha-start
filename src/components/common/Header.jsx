@@ -19,6 +19,7 @@ const Header = () => {
       }}
     >
       <div>Alpha Start</div>
+      <div>Jobs</div>
       <div>Notification</div>
       <div>User</div>
     </div>
