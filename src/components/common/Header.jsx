@@ -22,7 +22,7 @@ const Header = () => {
       <div style={{fontFamily:'sans-serif', color: '#30baaf9e'}}>
         <input type="search" name="" id="" />
       </div>
-      <div>Jobs</div>
+      <div className='bg-amber-300'>Jobs</div>
       <div>Connections</div>
       <div>Messaging</div>
       <div>Notification</div>
