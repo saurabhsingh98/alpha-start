@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
-export default function Modal({ isOpen, onClose, title, children }) {
+export default function Modal({ isOpen, onClose, title, children, size = 'lg' }) {
   useEffect(() => {
     function handleEscape(e) {
       if (e.key === 'Escape') {
@@ -22,6 +22,13 @@ export default function Modal({ isOpen, onClose, title, children }) {
 
   if (!isOpen) return null;
 
+  // Dynamically assign width class based on size prop
+  const sizeClass = {
+    sm: 'max-w-sm',
+    md: 'max-w-md',
+    lg: 'max-w-3xl',
+  }[size] || 'max-w-md'; // default to md if size is invalid
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
@@ -29,7 +36,9 @@ export default function Modal({ isOpen, onClose, title, children }) {
         onClick={onClose}
       />
 
-      <div className="relative bg-white rounded-lg shadow-2xl max-w-md w-full mx-4 max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <div
+        className={`relative bg-white rounded-lg shadow-2xl w-full mx-4 max-h-[90vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200 ${sizeClass}`}
+      >
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           {title && <h2 className="text-xl font-semibold text-gray-900">{title}</h2>}
           <button

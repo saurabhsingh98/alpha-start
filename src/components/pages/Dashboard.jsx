@@ -1,7 +1,8 @@
 
 import React from 'react'
-// import Header from '../common/Header'
 import { Header } from '../common/Header1'
+import { CreatePost } from './CreatePost'
+
 const Dashboard = () => {
 
   return (
@@ -17,7 +18,7 @@ const Dashboard = () => {
             { label: 'Profile' },
           ]}
         />  
-
+      <CreatePost />
     </>
   )
 }
