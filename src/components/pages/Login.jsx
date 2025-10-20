@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-const Login = ({isLogin=true , setIsLogin}) => {
-  // const [isLogin, setIsLogin] = useState(true);
+const Login = () => {
+
   const [showAccordion, setShowAccordion] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -21,21 +22,22 @@ const Login = ({isLogin=true , setIsLogin}) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('Authentication Data:', formData);
+    // console.log('Authentication Data:', formData);
+
+    
   };
 
   const toggleAccordion = () => {
     setShowAccordion((prev) => !prev);
   };
 
-  console.log("---------ISLOGIN STATUS------",isLogin)
 
   return (
     <div className="login-container">
       <form onSubmit={onSubmit} className="login-form">
         <h2>{isLogin ? 'Login' : 'Sign Up'}</h2>
 
-        <div className="form-group">
+        <div className="">
           <label htmlFor="email">Email</label>
           <input
             type="email"
