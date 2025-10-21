@@ -1,7 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
+import Modal from './Modal.jsx'
+
 
 const Header = () => {
-  console.log("------INSIDE HEADER----");
+  const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false)
+  console.log("--------INSIDE HEADER------");
+
+
+  console.log("-------SEE NOTIFICATION--------")
 
   return (
     <div
@@ -25,8 +31,11 @@ const Header = () => {
       <div className='bg-amber-300'>Jobs</div>
       <div>Connections</div>
       <div>Messaging</div>
-      <div>Notification</div>
+      <div onClick={()=>setIsNotificationModalOpen(!isNotificationModalOpen)}>Notification</div>
       <div>User</div>
+      <Modal isOpen={isNotificationModalOpen} onClose={()=>setIsNotificationModalOpen(!isNotificationModalOpen)} title="Notification">
+        <div>Notification</div>
+      </Modal>
     </div>
   );
 };
