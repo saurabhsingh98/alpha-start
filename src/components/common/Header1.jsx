@@ -25,9 +25,9 @@ export const Header = ({
 
             {navigation.length > 0 && (
               <nav className="hidden md:flex items-center gap-6">
-                {navigation.map((item) => (
+                {navigation.map((item, index) => (
                   <a
-                    key={item.href}
+                    key={index}
                     href={item.href}
                     className={`
                       text-sm font-medium transition-colors duration-200

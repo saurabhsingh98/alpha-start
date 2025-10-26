@@ -3,6 +3,7 @@ import { Header } from '../common/Header1'
 import { CreatePost } from './CreatePost'
 import { HiBell } from 'react-icons/hi'
 import { Feeds } from './Feeds.jsx'
+import { Notifications } from './Notifications.jsx'
 
 const Dashboard = () => {
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false)
@@ -40,7 +41,9 @@ const Dashboard = () => {
         }
         />  
       <CreatePost />
-      <Feeds />
+      {/* <Feeds /> */}
+      <Notifications />
+
     </>
   )
 }
