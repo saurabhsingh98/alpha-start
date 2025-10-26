@@ -13,7 +13,7 @@ export const postApiHandler = async (url, data) => {
 }
 
 export const getApiHandler = async (url) => {
-    const response = await axios.get(url, {
+    const response = await axios.get(`${BASE_URL}${url}`, {
         headers: {
             Authorization: `Bearer ${bearerToken}`
         }

@@ -4,5 +4,6 @@ export const alpha_api = {
     USER_SIGNUP: '/auth/register',
     USER_LOGIN: '/auth/login',
     MEDIA_UPLOAD: '/media/upload',
-    CREATE_POST: '/posts'
+    CREATE_POST: '/posts',
+    GET_POSTS: (userId) => `/posts/user/${userId}`
 }

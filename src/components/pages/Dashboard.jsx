@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { Header } from '../common/Header1'
 import { CreatePost } from './CreatePost'
 import { HiBell } from 'react-icons/hi'
+import { Feeds } from './Feeds.jsx'
 
 const Dashboard = () => {
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false)
@@ -29,27 +30,7 @@ const Dashboard = () => {
             <div>Notification</div>
             <div>Notification</div>
             <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
-            <div>Notification</div>
+            <div>Notification</div>=
           </div>
           <div>
             <img src={"/images/user.png"} alt="user" className="w-6 h-6 rounded-full" />
@@ -59,6 +40,7 @@ const Dashboard = () => {
         }
         />  
       <CreatePost />
+      <Feeds />
     </>
   )
 }
