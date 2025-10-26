@@ -1,6 +1,8 @@
-export const BASE_URL = "https://wvjd293j-3000.inc1.devtunnels.ms"
+export const BASE_URL = "http://localhost:3000"
 
 export const alpha_api = {
     USER_SIGNUP: '/auth/register',
-    USER_LOGIN: '/auth/login'
+    USER_LOGIN: '/auth/login',
+    MEDIA_UPLOAD: '/media/upload',
+    CREATE_POST: '/posts'
 }

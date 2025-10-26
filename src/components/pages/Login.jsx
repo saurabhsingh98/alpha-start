@@ -3,8 +3,10 @@ import { TextInput } from '../common/TextInput.jsx'
 import { Button } from '../common/Button.jsx'
 import { Radio } from '../common/RadioInput.jsx'
 import { postApiHandler } from '../../helpers/apihandler.js';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
@@ -27,13 +29,14 @@ const Login = () => {
 
       // if register
       if(isLogin){
-          await postApiHandler('/auth/login', formData)
-          console.log("---------REGISTRATION SUCCESSFULL-----")
+          const response = await postApiHandler('/auth/login', formData)
+          localStorage.setItem('token', response.token)
+          localStorage.setItem('user_id', response.userId)
+          navigate('/')
       }else{
-        await postApiHandler('/auth/register', formData)
-        console.log("------LOGIN SUCCESSFULL-----")
+          await postApiHandler('/auth/register', formData)
+        console.log("------REGISTER SUCCESSFULL-----")
       }
-      
     } catch (error) {
       console.log("-----ERROR---", error)
     }
