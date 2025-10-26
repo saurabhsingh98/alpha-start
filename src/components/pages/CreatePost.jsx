@@ -11,7 +11,7 @@ export const CreatePost = ()=>{
     const [formData, setFormData] = useState({
         title:"",
         content:"",
-        media_url:""
+        imageUrl:""
     })
     const [mediaUrl, setMediaUrl] = useState("")
 
@@ -24,17 +24,19 @@ export const CreatePost = ()=>{
 
     const onSubmit = async () => {
 
+        const updatedFormData = {
+            ...formData
+        }
+
         try {
             const uploadFormData = new FormData()
             uploadFormData.append("file", mediaUrl)
             const response = await postApiHandler(alpha_api.MEDIA_UPLOAD, uploadFormData)
             
+            
             if(response.success){
                 const media_url = response.data.filepath
-                setFormData((prevData) => ({
-                    ...prevData,
-                    media_url: media_url
-                }))
+                updatedFormData.imageUrl = media_url
             }
         } catch (error) {
             console.log("-----ERROR IN MEDIA UPLOAD---", error)
@@ -43,7 +45,7 @@ export const CreatePost = ()=>{
         }
 
         try {
-            await postApiHandler(alpha_api.CREATE_POST, formData)
+            await postApiHandler(alpha_api.CREATE_POST, updatedFormData)
             setIsOpen(false)
         } catch (error) {
             console.log("-----ERROR IN CREATE POST---", error)
