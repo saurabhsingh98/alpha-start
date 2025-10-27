@@ -4,6 +4,7 @@ export const SOCKET_URL = "http://localhost:3005"
 export const alpha_api = {
     USER_SIGNUP: '/auth/register',
     USER_LOGIN: '/auth/login',
+    GET_USERS: '/users/user_list',
     MEDIA_UPLOAD: '/media/upload',
     CREATE_POST: '/posts',
     GET_POSTS: (userId) => `/posts/user/${userId}`,

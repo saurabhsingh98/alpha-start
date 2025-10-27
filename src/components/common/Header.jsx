@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { HiArrowRight, HiBell, HiUserGroup } from 'react-icons/hi'
 import { TiMessages } from 'react-icons/ti'
-import { Notifications } from '../pages/Notifications'
 
 const Header = () => {
+    const navigate = useNavigate()
+
     const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false)
     const [searchQuery, setSearchQuery] = useState("")
 
@@ -22,7 +24,7 @@ const Header = () => {
               <div className="flex items-center gap-50 justify-between w-full">
 
                 <div className="flex items-center gap-3">
-                  <div className="text-xl font-bold text-[#0077B5]">Alpha Start</div>
+                  <div className="text-xl font-bold text-[#0077B5]" onClick={()=>navigate('/')}>Alpha Start</div>
                   <div className="text-sm font-medium text-gray-600">
                     <input 
                       type="search" 
@@ -34,29 +36,29 @@ const Header = () => {
                       onChange={onSearchChange} 
                     />
                   </div>
-                  <div className="items-center gap-2">
+                  <div className="items-center gap-2 cursor-pointer" onClick={()=>navigate('/jobs')}>
                     <HiArrowRight className="w-6 h-6 text-gray-600 mx-auto" />
                     <div className="text-sm font-medium text-gray-600">Jobs</div>
                   </div>
-                  <div className="items-center gap-2">
+                  <div className="items-center gap-2 cursor-pointer" onClick={()=>navigate('/connections')}>
                     <HiUserGroup className="w-6 h-6 text-gray-600 mx-auto" />
                     <div className="text-sm font-medium text-gray-600">Connections</div>
                   </div>
-                  <div className="items-center gap-2">
+                  <div className="items-center gap-2 cursor-pointer" onClick={()=>navigate('/messages')}>
                     <TiMessages className="w-6 h-6 text-gray-600 mx-auto" />
                     <div className="text-sm font-medium text-gray-600">Messages</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 cursor-pointer">
                   <div className="items-center gap-2" onClick={()=>setIsNotificationModalOpen(!isNotificationModalOpen)}>
                     <HiBell className="mx-auto w-6 h-6 text-gray-600" />
                     <div className="text-sm font-medium text-gray-600 mx-auto">Notification</div>
                   </div>
                   <div className="text-sm font-medium text-gray-600 border rounded-full p-2">
-                    <img src={"/images/user.png"} alt="user" className="w-6 h-6 rounded-full" />
-                    <div>John Doe</div>
+                    <img src={"/images/user.png"} alt="user" className="w-6 h-6 rounded-full mx-auto" />
                   </div>
+                    <div className="mx-auto">John Doe</div>
                 </div>
               </div>
             </div>
