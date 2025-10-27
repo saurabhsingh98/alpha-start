@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { HiArrowRight, HiBell, HiUserGroup } from 'react-icons/hi'
+import { IoBagSharp } from "react-icons/io5";
 import { TiMessages } from 'react-icons/ti'
 
 const Header = () => {
@@ -23,7 +24,7 @@ const Header = () => {
 
               <div className="flex items-center gap-50 justify-between w-full">
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-7">
                   <div className="text-xl font-bold text-[#0077B5]" onClick={()=>navigate('/')}>Alpha Start</div>
                   <div className="text-sm font-medium text-gray-600">
                     <input 
@@ -37,7 +38,7 @@ const Header = () => {
                     />
                   </div>
                   <div className="items-center gap-2 cursor-pointer" onClick={()=>navigate('/jobs')}>
-                    <HiArrowRight className="w-6 h-6 text-gray-600 mx-auto" />
+                    <IoBagSharp className="w-6 h-6 text-gray-600 mx-auto" />
                     <div className="text-sm font-medium text-gray-600">Jobs</div>
                   </div>
                   <div className="items-center gap-2 cursor-pointer" onClick={()=>navigate('/connections')}>
