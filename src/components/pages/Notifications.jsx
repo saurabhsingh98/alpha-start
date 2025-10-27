@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { io } from 'socket.io-client'
 import { alpha_api, SOCKET_URL } from '../../constants/api.js'
 import { getApiHandler } from '../../helpers/apihandler.js'
+import Header from '../common/Header.jsx'
 
-export const Notifications = () => {
+const Notifications = () => {
     const [notifications, setNotifications] = useState([])
     const userId = localStorage.getItem('user_id') || 'User Id Missing'
 
@@ -43,7 +44,8 @@ export const Notifications = () => {
     }, [])
 
     return (
-        <div>
+        <>
+            <Header />
             {notifications.map((notification) => (
                 <div key={notification._id}>
                     <div>{notification.message}</div>
@@ -51,6 +53,8 @@ export const Notifications = () => {
                     <div>{notification.type}</div>
                 </div>
             ))}
-        </div>
+        </>
     )
 }
+
+export default Notifications

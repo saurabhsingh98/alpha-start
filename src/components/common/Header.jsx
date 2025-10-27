@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { HiArrowRight, HiBell, HiUserGroup } from 'react-icons/hi'
+import { HiBell, HiUserGroup } from 'react-icons/hi'
 import { IoBagSharp } from "react-icons/io5";
 import { TiMessages } from 'react-icons/ti'
 
 const Header = () => {
     const navigate = useNavigate()
 
-    const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false)
     const [searchQuery, setSearchQuery] = useState("")
 
     const onSearchChange = (e) => {
@@ -52,7 +51,7 @@ const Header = () => {
                 </div>
 
                 <div className="flex items-center gap-4 cursor-pointer">
-                  <div className="items-center gap-2" onClick={()=>setIsNotificationModalOpen(!isNotificationModalOpen)}>
+                  <div className="items-center gap-2" onClick={()=>navigate('/notifications')}>
                     <HiBell className="mx-auto w-6 h-6 text-gray-600" />
                     <div className="text-sm font-medium text-gray-600 mx-auto">Notification</div>
                   </div>

@@ -5,6 +5,7 @@ import Dashboard from './components/pages/Dashboard.jsx';
 import Connections from './components/pages/Connections.jsx';
 import Jobs from './components/pages/Jobs.jsx';
 import Messages from './components/pages/Messages.jsx';
+import Notifications from './components/pages/Notifications.jsx';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/connections" element={<Connections />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/messages" element={<Messages />} />
+        <Route path="/notifications" element={<Notifications />} />
         <Route path="*" element={<>NOT FOUND</>} />
       </Routes>
     </Router>

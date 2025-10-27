@@ -44,7 +44,6 @@ const Connections = () => {
       <Header />
       <div className="flex flex-wrap gap-4 justify-center items-center m-10">
         {users?.map((user, index) => (
-            <>
             <div key={index} className='w-1/2 h-1/2 bg-gray-200 rounded-lg'>
                 <div>{user.firstName}</div>
                 <div>{user.lastName}</div>
@@ -53,7 +52,6 @@ const Connections = () => {
                 <div>{user.industry}</div>
                 <div>{user.summary}</div>
             </div>
-            </>
         ))}
       </div>
     </div>
