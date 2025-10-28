@@ -1,0 +1,1 @@
+export const AUTH_TOKEN_EXPIRY = 60; //60 minutes

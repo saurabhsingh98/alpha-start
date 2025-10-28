@@ -2,6 +2,7 @@ export const BASE_URL = "http://localhost:3000"
 export const SOCKET_URL = "http://localhost:3005"
 
 export const alpha_api = {
+    ADD_PROFILE: '/users/profile',
     USER_SIGNUP: '/auth/register',
     USER_LOGIN: '/auth/login',
     GET_USERS: '/users/user_list',
