@@ -8,7 +8,7 @@ import { alpha_api } from '../../constants/api.js'
 import ExperienceInput from './Experience.jsx'
 import EducationInput from './Education.jsx'
 
-const Profile = ({isOpen, setIsOpen}) => {
+const ProfileInput = ({isOpen, setIsOpen}) => {
   const [isExperienceInputOpen, setIsExperienceInputOpen] = useState(false)
   const [isEducationInputOpen, setIsEducationInputOpen] = useState(false)
   const [profilePicture, setProfilePicture] = useState(null)
@@ -122,4 +122,4 @@ const Profile = ({isOpen, setIsOpen}) => {
   )
 }
 
-export default Profile
+export default ProfileInput

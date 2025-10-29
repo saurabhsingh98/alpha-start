@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { HiBell, HiUserGroup } from 'react-icons/hi'
 import { IoBagSharp } from "react-icons/io5";
 import { TiMessages } from 'react-icons/ti'
+import { DEFAULT_PROFILE_PICTURE } from '../../constants/constant.js'
 
 const Header = () => {
     const navigate = useNavigate()
@@ -55,10 +56,10 @@ const Header = () => {
                     <HiBell className="mx-auto w-6 h-6 text-gray-600" />
                     <div className="text-sm font-medium text-gray-600 mx-auto">Notification</div>
                   </div>
-                  <div className="text-sm font-medium text-gray-600 border rounded-full p-2">
-                    <img src={"/images/user.png"} alt="user" className="w-6 h-6 rounded-full mx-auto" />
-                  </div>
+                  <div className="text-sm font-medium text-gray-600 border rounded-full p-2" onClick={()=>navigate('/profile')}>
+                  <img src={DEFAULT_PROFILE_PICTURE} alt="user" className="w-6 h-6 rounded-full mx-auto" />
                     <div className="mx-auto">John Doe</div>
+                  </div>
                 </div>
               </div>
             </div>
