@@ -3,27 +3,6 @@ import Header from '../common/Header.jsx'
 import { getApiHandler } from '../../helpers/apihandler.js'
 import { alpha_api } from '../../constants/api.js'
 
-
-// [
-//     {
-//         "userId": "68efdc2a9a5777ccc8d2df57",
-//         "firstName": "Prachi",
-//         "lastName": "Chauhan",
-//         "headline": "Software Developer",
-//         "location": "Saharanpur",
-//         "industry": "IT",
-//         "summary": "Frontend developer"
-//     },
-//     {
-//         "userId": "68f1e46902fd41ec8fbd01e6",
-//         "firstName": "Ankit",
-//         "lastName": "Gupta",
-//         "headline": "Software Developer",
-//         "location": "Gorakpur UP",
-//         "industry": "IT",
-//         "summary": "Backend  developer"
-//     }
-// ]
 const Connections = () => {
     const [users, setUsers] = useState([])
 

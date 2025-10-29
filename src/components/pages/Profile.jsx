@@ -3,16 +3,18 @@ import { DEFAULT_PROFILE_PICTURE, DEFAULT_WALLPAPER } from '../../constants/cons
 import { Button } from '../common/Button.jsx'
 import { useState } from 'react'
 
-import { FaEdit, FaPlus, FaMinus, FaUser, FaUserPlus, FaUserMinus } from 'react-icons/fa'
-
+import { FaEdit, FaPlus } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 import ProfileInput from '../profile/Profile.jsx';
 import ExperienceInput from '../profile/Experience.jsx'
 import EducationInput from '../profile/Education.jsx'
 
 const Profile = () => {
+  const userProfile = useSelector((state) => state.userProfile.user) || {}
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false)
   const [isAddExperienceOpen, setIsAddExperienceOpen] = useState(false)
   const [isAddEducationOpen, setIsAddEducationOpen] = useState(false)
+
   return (
     <div>
       <Header />
@@ -26,18 +28,18 @@ const Profile = () => {
         </div>
         <div className='w-full h-2/3'>
             <div className='w-full h-full'>
-                <img src={DEFAULT_PROFILE_PICTURE} alt="profile" className="w-20 h-20 rounded-full mx-auto absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                <img src={userProfile?.profilePicture || DEFAULT_PROFILE_PICTURE} alt="profile" className="w-20 h-20 rounded-full mx-auto absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
 
                 <div className='w-full h-1/2 m-5 p-4'>
-                    <h2 className='text-2xl font-bold'>John Doe</h2>
+                    <h2 className='text-2xl font-bold'>{userProfile?.firstName} {userProfile?.lastName}</h2>
                     {/* description */}
-                    <p className='text-gray-600'>Software Developer</p>
+                    <p className='text-gray-600'>{userProfile?.headline}</p>
                     {/* location */}
-                    <p className='text-gray-600'>San Francisco, CA</p>
+                    <p className='text-gray-600'>{userProfile?.location}</p>
                     {/* industry */}
-                    <p className='text-gray-600'>Technology</p>
+                    <p className='text-gray-600'>{userProfile?.industry}</p>
                     {/* summary */}
-                    <p className='text-gray-600'>A short career journey</p>
+                    <p className='text-gray-600'>{userProfile?.summary}</p>
                 </div>
                 
                 <div className='flex items-center justify-center gap-5 w-full h-1/2 m-5 p-4'>

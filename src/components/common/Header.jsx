@@ -4,8 +4,10 @@ import { HiBell, HiUserGroup } from 'react-icons/hi'
 import { IoBagSharp } from "react-icons/io5";
 import { TiMessages } from 'react-icons/ti'
 import { DEFAULT_PROFILE_PICTURE } from '../../constants/constant.js'
+import { useSelector } from 'react-redux'
 
 const Header = () => {
+    const userProfile = useSelector((state) => state.userProfile.user) || {}
     const navigate = useNavigate()
 
     const [searchQuery, setSearchQuery] = useState("")
@@ -57,9 +59,9 @@ const Header = () => {
                     <div className="text-sm font-medium text-gray-600 mx-auto">Notification</div>
                   </div>
                   <div className="text-sm font-medium text-gray-600 border rounded-full p-2" onClick={()=>navigate('/profile')}>
-                  <img src={DEFAULT_PROFILE_PICTURE} alt="user" className="w-6 h-6 rounded-full mx-auto" />
-                    <div className="mx-auto">John Doe</div>
+                  <img src={userProfile?.profilePicture || DEFAULT_PROFILE_PICTURE} alt="user" className="w-6 h-6 rounded-full mx-auto" />
                   </div>
+                    <div className="mx-auto">{userProfile?.firstName}</div>
                 </div>
               </div>
             </div>

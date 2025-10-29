@@ -37,11 +37,11 @@ const ProfileInput = ({isOpen, setIsOpen}) => {
       // uploadprfile
       const uploadFormData = new FormData()
       uploadFormData.append("file", profilePicture)
-      // const response = await postApiHandler(alpha_api.MEDIA_UPLOAD, uploadFormData)
-      // if(response.success){
-        // console.log("-----PROFILE PICTURE UPLOADED-----", response)
-        // updatedFormData.profilePicture = response.data.filepath
-      // }
+      const response = await postApiHandler(alpha_api.MEDIA_UPLOAD, uploadFormData)
+      if(response.success){
+        console.log("-----PROFILE PICTURE UPLOADED-----", response)
+        updatedFormData.profilePicture = response.data.filepath
+      }
       
     } catch (error) {
       console.log("-----ERROR IN UPLOADING PROFILE PICTURE-----", error)
@@ -49,10 +49,10 @@ const ProfileInput = ({isOpen, setIsOpen}) => {
       return
     }
     try {
-      // const response = await postApiHandler(alpha_api.ADD_PROFILE, updatedFormData)
-      // console.log("-----PROFILE ADDED-----", response)
+      const response = await postApiHandler(alpha_api.ADD_PROFILE, updatedFormData)
+      console.log("-----PROFILE ADDED-----", response)
       alert("Profile added successfully")
-      // setIsOpen(false)
+      setIsOpen(false)
     } catch (error) {
       console.log("-----ERROR IN ADDING PROFILE-----", error)
       alert("Error in adding profile")

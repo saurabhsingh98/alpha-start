@@ -20,7 +20,7 @@ function App() {
         <Route path="/messages" element={<Messages />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="*" element={<>NOT FOUND</>} />
+        <Route path="*" element={<div>NOT FOUND</div>} />
       </Routes>
     </Router>
   );
