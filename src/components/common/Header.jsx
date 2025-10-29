@@ -1,12 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { HiBell, HiUserGroup } from 'react-icons/hi'
 import { IoBagSharp } from "react-icons/io5";
 import { TiMessages } from 'react-icons/ti'
 import { DEFAULT_PROFILE_PICTURE } from '../../constants/constant.js'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getApiHandler } from '../../helpers/apihandler.js'
+import { alpha_api } from '../../constants/api.js'
+import { setUserProfile } from '../../reduxStore/slices/userSlice.js'
+
+const fetchUserProfile = async (dispatch) => {
+    try {
+      const response = await getApiHandler(`${alpha_api.GET_PROFILE}`)
+        console.log("----------response------", response)
+        dispatch(setUserProfile(response))
+      } catch (error) {
+        console.log("--------ERROR WHILE FETCHING PROFILE----")
+      }
+}
 
 const Header = () => {
+  const dispatch = useDispatch();
+    useEffect(()=>{
+      fetchUserProfile(dispatch)
+    },[dispatch])
+
     const userProfile = useSelector((state) => state.userProfile.user) || {}
     const navigate = useNavigate()
 

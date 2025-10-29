@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Header from '../common/Header.jsx'
 import { getApiHandler } from '../../helpers/apihandler.js'
 import { alpha_api } from '../../constants/api.js'
 
@@ -20,7 +19,6 @@ const Connections = () => {
     
   return (
     <div>
-      <Header />
       <div className="flex flex-wrap gap-4 justify-center items-center m-10">
         {users?.map((user, index) => (
             <div key={index} className='w-1/2 h-1/2 bg-gray-200 rounded-lg'>

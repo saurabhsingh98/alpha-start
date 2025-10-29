@@ -7,11 +7,13 @@ import Jobs from './components/pages/Jobs.jsx';
 import Messages from './components/pages/Messages.jsx';
 import Notifications from './components/pages/Notifications.jsx';
 import ProfilePage from './components/pages/Profile.jsx';
+import Header from './components/common/Header.jsx';
 
 function App() {
 
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
