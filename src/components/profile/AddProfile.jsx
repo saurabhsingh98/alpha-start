@@ -5,8 +5,8 @@ import { Button } from '../common/Button.jsx'
 import { postApiHandler } from '../../helpers/apihandler.js'
 import { alpha_api } from '../../constants/api.js'
 
-import ExperienceInput from './Experience.jsx'
-import EducationInput from './Education.jsx'
+import ExperienceInput from './AddExperience.jsx'
+import EducationInput from './AddEducation.jsx'
 
 const ProfileInput = ({isOpen, setIsOpen}) => {
   const [isExperienceInputOpen, setIsExperienceInputOpen] = useState(false)

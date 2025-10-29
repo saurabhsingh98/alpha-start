@@ -5,9 +5,9 @@ import { useState } from 'react'
 
 import { FaEdit, FaPlus } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
-import ProfileInput from '../profile/Profile.jsx';
-import ExperienceInput from '../profile/Experience.jsx'
-import EducationInput from '../profile/Education.jsx'
+import ProfileInput from '../profile/AddProfile.jsx';
+import ExperienceInput from '../profile/AddExperience.jsx'
+import EducationInput from '../profile/AddEducation.jsx'
 
 const Profile = () => {
   const userProfile = useSelector((state) => state.userProfile.user) || {}

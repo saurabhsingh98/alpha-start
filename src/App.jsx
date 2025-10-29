@@ -6,7 +6,7 @@ import Connections from './components/pages/Connections.jsx';
 import Jobs from './components/pages/Jobs.jsx';
 import Messages from './components/pages/Messages.jsx';
 import Notifications from './components/pages/Notifications.jsx';
-import Profile from './components/pages/Profile.jsx';
+import ProfilePage from './components/pages/Profile.jsx';
 
 function App() {
 
@@ -19,7 +19,7 @@ function App() {
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/notifications" element={<Notifications />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<div>NOT FOUND</div>} />
       </Routes>
     </Router>

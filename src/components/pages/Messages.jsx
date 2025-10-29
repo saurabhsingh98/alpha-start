@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Header from '../common/Header.jsx'
-import Profile from '../profile/Profile.jsx'
+import Profile from '../profile/AddProfile.jsx'
 
 
 const Messages = () => {
