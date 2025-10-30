@@ -8,10 +8,10 @@ import ProfileInput from '../profile/AddProfile.jsx';
 import ExperienceInput from '../profile/AddExperience.jsx'
 import EducationInput from '../profile/AddEducation.jsx'
 import Education from '../profile/Education.jsx'
+import Experience from '../profile/Experience.jsx'
 
 const Profile = () => {
   const userProfile = useSelector((state) => state?.userProfile?.user?.profile) || {}
-  const education = useSelector((state) => state?.userProfile?.user?.education) || []
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false)
   const [isAddExperienceOpen, setIsAddExperienceOpen] = useState(false)
   const [isAddEducationOpen, setIsAddEducationOpen] = useState(false)
@@ -96,7 +96,12 @@ const Profile = () => {
 
         {/* Education Section */}
         <div className="mt-8">
-          <Education education={education} />
+          <Education/>
+        </div>
+
+        {/* Experience Section */}
+        <div className="mt-8">
+          <Experience/>
         </div>
       </div>
     </div>
