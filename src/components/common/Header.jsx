@@ -12,7 +12,6 @@ import { setUserProfile } from '../../reduxStore/slices/userSlice.js'
 const fetchUserProfile = async (dispatch) => {
     try {
       const response = await getApiHandler(`${alpha_api.GET_PROFILE}`)
-        console.log("----------response------", response)
         dispatch(setUserProfile(response))
       } catch (error) {
         console.log("--------ERROR WHILE FETCHING PROFILE----")

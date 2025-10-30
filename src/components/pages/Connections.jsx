@@ -1,34 +1,70 @@
 import React, { useState, useEffect } from 'react'
 import { getApiHandler } from '../../helpers/apihandler.js'
 import { alpha_api } from '../../constants/api.js'
+import Loader from '../common/Loader.jsx'
+import { DEFAULT_PROFILE_PICTURE } from '../../constants/constant.js'
 
 const Connections = () => {
-    const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([])
+  const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    try {
+      setLoading(true)
+      const fetchUsers = async () => {
+        const response = await getApiHandler(alpha_api.GET_USERS)
+        setUsers(response)
+      }
+      fetchUsers()
+    } catch (error) {
+      console.log("-----ERROR IN FETCHING USERS-----", error)
+    }
+    finally {
+      setLoading(false)
+    }
+  }, [])
 
-    useEffect(() => {
-        try {
-            const fetchUsers = async () => {
-                const response = await getApiHandler(alpha_api.GET_USERS)
-                setUsers(response)
-            }
-            fetchUsers()
-        } catch (error) {
-            console.log("-----ERROR IN FETCHING USERS-----", error)
-        }
-    }, [])
-    
+  if (loading) {
+    return <div className='flex justify-center items-center h-screen'><Loader /></div>
+  }
   return (
     <div>
-      <div className="flex flex-wrap gap-4 justify-center items-center m-10">
+      <div className="flex flex-wrap gap-8 justify-center items-center m-10">
         {users?.map((user, index) => (
-            <div key={index} className='w-1/2 h-1/2 bg-gray-200 rounded-lg'>
-                <div>{user.firstName}</div>
-                <div>{user.lastName}</div>
-                <div>{user.headline}</div>
-                <div>{user.location}</div>
-                <div>{user.industry}</div>
-                <div>{user.summary}</div>
-            </div>
+          <div
+            key={index}
+            className="w-80 bg-white rounded-xl shadow-md flex flex-col items-center p-6 hover:shadow-xl transition-shadow"
+          >
+            <img
+              src={user.profilePicture || DEFAULT_PROFILE_PICTURE}
+              alt={`${user.firstName} ${user.lastName}`}
+              className="w-20 h-20 rounded-full object-cover border-2 border-blue-400 mb-3"
+            />
+            <h3 className="text-lg font-semibold text-gray-900">
+              {user.firstName} {user.lastName}
+            </h3>
+            <p className="text-blue-700 font-medium text-sm">{user.headline}</p>
+            {user.location && (
+              <div className="text-gray-500 text-sm mt-1 flex items-center gap-1">
+                <span className="material-icons text-base">location_on</span>
+                {user.location}
+              </div>
+            )}
+            {user.industry && (
+              <div className="text-gray-500 text-sm mt-1 flex items-center gap-1">
+                <span className="material-icons text-base">business_center</span>
+                {user.industry}
+              </div>
+            )}
+            {user.summary && (
+              <p className="text-gray-600 text-xs mt-2">{user.summary}</p>
+            )}
+            <button
+              className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium transition-colors"
+              onClick={() => {/* TODO: Implement follow action */ }}
+            >
+              Follow
+            </button>
+          </div>
         ))}
       </div>
     </div>
