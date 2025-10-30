@@ -25,7 +25,7 @@ const Header = () => {
       fetchUserProfile(dispatch)
     },[dispatch])
 
-    const userProfile = useSelector((state) => state.userProfile.user) || {}
+    const userProfile = useSelector((state) => state?.userProfile?.user?.profile) || {}
     const navigate = useNavigate()
 
     const [searchQuery, setSearchQuery] = useState("")
