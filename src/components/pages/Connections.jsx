@@ -3,6 +3,15 @@ import { getApiHandler } from '../../helpers/apihandler.js'
 import { alpha_api } from '../../constants/api.js'
 import Loader from '../common/Loader.jsx'
 import { DEFAULT_PROFILE_PICTURE } from '../../constants/constant.js'
+import toast from 'react-hot-toast'
+
+const followUser = async (userId) => {
+  try {
+    const response = await postApiHandler(alpha_api.FOLLOW_USER(userId))
+  } catch (error) {
+    console.log("-----ERROR IN FOLLOWING USER-----", error)
+  }
+}
 
 const Connections = () => {
   const [users, setUsers] = useState([])
@@ -12,10 +21,12 @@ const Connections = () => {
       setLoading(true)
       const fetchUsers = async () => {
         const response = await getApiHandler(alpha_api.GET_USERS)
+        toast.success("-----USERS FETCHED SUCCESSFULLY-----")
         setUsers(response)
       }
       fetchUsers()
     } catch (error) {
+      toast.error("-----ERROR IN FETCHING USERS-----")
       console.log("-----ERROR IN FETCHING USERS-----", error)
     }
     finally {
@@ -60,7 +71,7 @@ const Connections = () => {
             )}
             <button
               className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium transition-colors"
-              onClick={() => {/* TODO: Implement follow action */ }}
+              onClick={() => { console.log("-----FOLLOW USER-----", user.userId) }}
             >
               Follow
             </button>

@@ -8,11 +8,14 @@ import Messages from './components/pages/Messages.jsx';
 import Notifications from './components/pages/Notifications.jsx';
 import ProfilePage from './components/pages/Profile.jsx';
 import Header from './components/common/Header.jsx';
+import { Toaster } from 'react-hot-toast';
+
 
 function App() {
 
   return (
     <Router>
+      <Toaster position="top-right" />
       <Header />
       <Routes>
         <Route path="/" element={<Dashboard />} />

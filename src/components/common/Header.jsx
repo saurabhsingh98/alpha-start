@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { HiBell, HiUserGroup } from 'react-icons/hi'
+import { HiBell, HiUserGroup, HiMoon, HiSun } from 'react-icons/hi'
 import { IoBagSharp } from "react-icons/io5";
 import { TiMessages } from 'react-icons/ti'
 import { DEFAULT_PROFILE_PICTURE } from '../../constants/constant.js'
@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getApiHandler } from '../../helpers/apihandler.js'
 import { alpha_api } from '../../constants/api.js'
 import { setUserProfile } from '../../reduxStore/slices/userSlice.js'
+import toast from 'react-hot-toast'
 
 const fetchUserProfile = async (dispatch) => {
     try {
@@ -16,6 +17,22 @@ const fetchUserProfile = async (dispatch) => {
       } catch (error) {
         console.log("--------ERROR WHILE FETCHING PROFILE----")
       }
+}
+
+const toogleTheme = (setTheme) => {
+  let theme = getTheme()
+  const newTheme = theme === 'dark' ? 'light' : 'dark'
+  localStorage.setItem('theme', newTheme)
+  setTheme(newTheme)
+  toast.success(`Theme toggled to ${newTheme}`)
+}
+
+const getTheme = () => {
+  let theme = localStorage.getItem('theme')
+  if(!theme){
+    theme = 'dark'
+  }
+  return theme
 }
 
 const Header = () => {
@@ -28,6 +45,7 @@ const Header = () => {
     const navigate = useNavigate()
 
     const [searchQuery, setSearchQuery] = useState("")
+    const [theme, setTheme] = useState(getTheme())
 
     const onSearchChange = (e) => {
       setSearchQuery(e.target.value)
@@ -71,6 +89,10 @@ const Header = () => {
                 </div>
 
                 <div className="flex items-center gap-4 cursor-pointer">
+                  <div className="items-center gap-2" onClick={()=>toogleTheme(setTheme)}>
+                    {theme === 'dark' ? <HiSun className="mx-auto w-6 h-6 text-gray-600" /> : <HiMoon className="mx-auto w-6 h-6 text-gray-600" />}
+                    <div className="text-sm font-medium text-gray-600 mx-auto">Theme</div>
+                  </div>
                   <div className="items-center gap-2" onClick={()=>navigate('/notifications')}>
                     <HiBell className="mx-auto w-6 h-6 text-gray-600" />
                     <div className="text-sm font-medium text-gray-600 mx-auto">Notification</div>
