@@ -24,6 +24,7 @@ const toogleTheme = (setTheme) => {
   const newTheme = theme === 'dark' ? 'light' : 'dark'
   localStorage.setItem('theme', newTheme)
   setTheme(newTheme)
+  document.documentElement.setAttribute('data-theme', newTheme)
   toast.success(`Theme toggled to ${newTheme}`)
 }
 
@@ -39,6 +40,9 @@ const Header = () => {
   const dispatch = useDispatch();
     useEffect(()=>{
       fetchUserProfile(dispatch)
+      // Apply theme on component mount
+      const theme = getTheme()
+      document.documentElement.setAttribute('data-theme', theme)
     },[dispatch])
 
     const userProfile = useSelector((state) => state?.userProfile?.user?.profile) || {}

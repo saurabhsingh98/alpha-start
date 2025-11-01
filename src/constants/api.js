@@ -10,5 +10,7 @@ export const alpha_api = {
     MEDIA_UPLOAD: '/media/upload',
     CREATE_POST: '/posts',
     GET_POSTS: (userId) => `/posts/user/${userId}`,
-    GET_NOTIFICATIONS: (userId) => `/notifications/${userId}`
+    GET_NOTIFICATIONS: (userId) => `/notifications/${userId}`,
+    FOLLOW_USER: (targetUserId) => `/users/follow/${targetUserId}`,
+    GET_FOLLOWING_USERS: (userId) => `/users/following/${userId}`
 }

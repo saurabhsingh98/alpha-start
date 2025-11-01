@@ -4,18 +4,42 @@ import { alpha_api } from '../../constants/api.js'
 import Loader from '../common/Loader.jsx'
 import { DEFAULT_PROFILE_PICTURE } from '../../constants/constant.js'
 import toast from 'react-hot-toast'
+import { postApiHandler } from '../../helpers/apihandler.js'
 
-const followUser = async (userId) => {
+const handleFollowUser = async (targetUserId, setFollowing) => {
   try {
-    const response = await postApiHandler(alpha_api.FOLLOW_USER(userId))
+    setFollowing(true)
+    const response = await postApiHandler(alpha_api.FOLLOW_USER(targetUserId))
+    toast.success("-----USER FOLLOWED SUCCESSFULLY-----")
   } catch (error) {
     console.log("-----ERROR IN FOLLOWING USER-----", error)
+    toast.error("-----ERROR IN FOLLOWING USER-----")
+  }finally{
+    setFollowing(false)
   }
 }
 
 const Connections = () => {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
+  const [following, setFollowing] = useState(false)
+
+  const [followingUsers, setFollowingUsers] = useState([])
+
+  const fetchFollowingUsers = async () => {
+    try {
+      setLoading(true)
+      const response = await getApiHandler(alpha_api.GET_FOLLOWING_USERS(localStorage.getItem('user_id')))
+      setFollowingUsers(response)
+    } catch (error) {
+      toast.error("-----ERROR IN FETCHING FOLLOWING USERS-----")
+      console.log("-----ERROR IN FETCHING FOLLOWING USERS-----", error)
+    }
+    finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
     try {
       setLoading(true)
@@ -33,6 +57,7 @@ const Connections = () => {
       setLoading(false)
     }
   }, [])
+
 
   if (loading) {
     return <div className='flex justify-center items-center h-screen'><Loader /></div>
@@ -70,14 +95,17 @@ const Connections = () => {
               <p className="text-gray-600 text-xs mt-2">{user.summary}</p>
             )}
             <button
-              className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium transition-colors"
-              onClick={() => { console.log("-----FOLLOW USER-----", user.userId) }}
+              className={`mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium transition-colors ${following ? 'opacity-50 cursor-not-allowed' : ''}`}
+              disabled={following}
+              onClick={() => { handleFollowUser(user.userId, setFollowing) }}
             >
               Follow
             </button>
           </div>
         ))}
       </div>
+
+    {/* // LIST OF USERS TO U CAN MESSAGE */}
     </div>
   )
 }
