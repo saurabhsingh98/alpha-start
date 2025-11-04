@@ -12,5 +12,6 @@ export const alpha_api = {
     GET_POSTS: (userId) => `/posts/user/${userId}`,
     GET_NOTIFICATIONS: (userId) => `/notifications/${userId}`,
     FOLLOW_USER: (targetUserId) => `/users/follow/${targetUserId}`,
-    GET_FOLLOWING_USERS: (userId) => `/users/following/${userId}`
+    GET_FOLLOWING_USERS: (userId) => `/users/following/${userId}`,
+    FOLLOWING_PROFILE: '/users/following-profile'
 }

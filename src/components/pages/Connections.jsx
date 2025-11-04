@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { getApiHandler } from '../../helpers/apihandler.js'
-import { alpha_api } from '../../constants/api.js'
+import { getApiHandler, postApiHandler } from '../../helpers/apihandler.js'
 import Loader from '../common/Loader.jsx'
+import { alpha_api } from '../../constants/api.js'
 import { DEFAULT_PROFILE_PICTURE } from '../../constants/constant.js'
+import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
-import { postApiHandler } from '../../helpers/apihandler.js'
 
 const handleFollowUser = async (targetUserId, setFollowing) => {
   try {
@@ -20,17 +20,22 @@ const handleFollowUser = async (targetUserId, setFollowing) => {
 }
 
 const Connections = () => {
+  const navigate = useNavigate()
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
   const [following, setFollowing] = useState(false)
 
   const [followingUsers, setFollowingUsers] = useState([])
 
+  useEffect(() => {
+    fetchFollowingUsers()
+  }, [])
+
   const fetchFollowingUsers = async () => {
     try {
       setLoading(true)
-      const response = await getApiHandler(alpha_api.GET_FOLLOWING_USERS(localStorage.getItem('user_id')))
-      setFollowingUsers(response)
+      const response = await getApiHandler(alpha_api.FOLLOWING_PROFILE)
+      setFollowingUsers(response.followingProfiles)
     } catch (error) {
       toast.error("-----ERROR IN FETCHING FOLLOWING USERS-----")
       console.log("-----ERROR IN FETCHING FOLLOWING USERS-----", error)
@@ -58,6 +63,14 @@ const Connections = () => {
     }
   }, [])
 
+  const handleMessageUser = async (targetUserId) => {
+    try {
+      navigate(`/conversation/${targetUserId}`)
+    } catch (error) {
+      toast.error("-----ERROR IN NAVIGATING TO MESSAGES-----")
+      console.log("-----ERROR IN NAVIGATING TO MESSAGES-----", error)
+    }
+  }
 
   if (loading) {
     return <div className='flex justify-center items-center h-screen'><Loader /></div>
@@ -105,7 +118,21 @@ const Connections = () => {
         ))}
       </div>
 
-    {/* // LIST OF USERS TO U CAN MESSAGE */}
+    <div className="m-10">
+    <h3 className="text-2xl font-bold text-gray-900 mb-10">Users You Follow</h3>
+      { followingUsers && followingUsers?.map((user, index) => (
+        <div key={index} className="w-80 bg-white rounded-xl shadow-md flex flex-col items-center p-6 hover:shadow-xl transition-shadow">
+          <img src={user.profilePicture || DEFAULT_PROFILE_PICTURE} alt={`${user.firstName} ${user.lastName}`} className="w-20 h-20 rounded-full object-cover border-2 border-blue-400 mb-3" />
+          <h3 className="text-lg font-semibold text-gray-900">{user.firstName} {user.lastName}</h3>
+          <p className="text-blue-700 font-medium text-sm">{user.headline}</p>
+          <button className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium transition-colors"
+          onClick={() => { handleMessageUser(user.userId) }}
+          >
+            Message
+          </button>
+        </div>
+      ))}
+    </div>
     </div>
   )
 }
