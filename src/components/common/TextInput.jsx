@@ -12,6 +12,7 @@ export const TextInput = ({
   className = '',
   multiline = false,       // <-- New prop
   rows = 4,                // <-- Optional, default height of textarea
+  onKeyDown,               // <-- For handling key down events
 }) => {
   return (
     <div className={`flex flex-col gap-1.5 ${className}`}>
@@ -26,6 +27,8 @@ export const TextInput = ({
         <textarea
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          onKeyDown={onKeyDown}
+
           placeholder={placeholder}
           disabled={disabled}
           required={required}
@@ -42,6 +45,8 @@ export const TextInput = ({
           type={type}
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          onKeyDown={onKeyDown}
+
           placeholder={placeholder}
           disabled={disabled}
           required={required}
